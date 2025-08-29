@@ -1,38 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AHA Global Travel Agency</title>
-  <style>
-    body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-    header { background: #0077cc; color: white; padding: 1rem; text-align: center; }
-    section { max-width: 800px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 12px; }
-    h1 { margin-top: 0; }
-    .package { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 8px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AHA Global Travel Agency — Singapore 3-Night Tours</title>
+<meta name="description" content="Senior-friendly tours for ages 60–80 and couples celebrating 20 years. Pine 松, Bamboo 竹, Ocean 海 packages.">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0e1116; --panel:#121722; --ink:#eef2ff; --muted:#b6c0d7; --brand:#3ea7ff; --brand2:#76e3c9; --accent:#ffd166; --ring:#3ea7ff66;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:linear-gradient(180deg,#0d1117 0%,#0f1420 50%,#0b0f17 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+  a{color:var(--brand);text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:#0d1117b3;backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #1f2937}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+  .logo{width:36px;height:36px;border-radius:10px;border:1px solid #223047;display:grid;place-items:center;background:#101725;color:var(--brand)}
+  .navlinks a{margin-left:18px;color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid #263247;background:#121829;color:#e8eeff;font-weight:600;cursor:pointer}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#081017;border:none}
+  /* hero */
+  .hero{padding:64px 0 36px;position:relative;overflow:hidden}
+  .hero .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid #23314a;color:#9fb2d7;padding:6px 10px;border-radius:999px;font-size:12px}
+  h1{font-size:38px;line-height:1.15;margin:14px 0 8px}
+  .sub{color:var(--muted);max-width:56ch}
+  .statrow{display:flex;gap:12px;margin-top:16px}
+  .stat{border:1px solid #223047;background:#0f1522;padding:10px 14px;border-radius:12px;text-align:center}
+  .stat .v{font-size:18px;font-weight:700}
+  .heroimg{border-radius:22px;overflow:hidden;border:1px solid #25344f;box-shadow:0 20px 80px #0006}
+  .heroimg img{width:100%;height:100%;object-fit:cover;display:block}
+  /* search card */
+  .search{margin-top:18px;border:1px solid #223047;background:#0f1522;border-radius:16px;padding:12px;display:grid;gap:10px;grid-template-columns:1fr 0.8fr 0.6fr auto}
+  .input{display:flex;gap:8px;align-items:center;border:1px solid #223047;background:#0d1320;border-radius:12px;padding:10px 12px;color:#cfe3ff}
+  .input input{all:unset;flex:1}
+  /* section */
+  section{padding:40px 0}
+  section h2{font-size:28px;margin:0 0 8px}
+  .muted{color:var(--muted)}
+  /* packages */
+  .cards{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+  .card{border:1px solid #25344f;background:#0f1522;border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+  .card .img{height:160px;overflow:hidden}
+  .card .img img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
+  .card .body{padding:14px}
+  .tier{font-size:12px;color:#a9badf}
+  .title{font-weight:700;margin:4px 0}
+  .perk{display:flex;align-items:center;gap:8px;color:#bcd1f7;font-size:14px}
+  .price{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+  .badge{font-size:11px;border:1px solid #32507a;color:#bfe8ff;border-radius:999px;padding:4px 8px}
+  /* itinerary + price table */
+  .grid2{display:grid;gap:16px;grid-template-columns:1.2fr 0.8fr}
+  .panel{border:1px solid #25344f;background:#0f1522;border-radius:18px;padding:16px}
+  .steps{display:grid;gap:8px}
+  .step{border-left:3px solid var(--brand);padding-left:10px}
+  table{width:100%;border-collapse:collapse;border:1px solid #263247;border-radius:12px;overflow:hidden}
+  th,td{border-bottom:1px solid #223047;padding:10px 12px;text-align:left}
+  th{background:#0f1a2a}
+  /* testimonials */
+  .tgrid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
+  .quote{border:1px solid #25344f;background:#0f1522;border-radius:16px;padding:14px}
+  /* faq */
+  details{border:1px solid #25344f;background:#0f1522;border-radius:14px;padding:12px}
+  details+details{margin-top:10px}
+  summary{cursor:pointer;font-weight:600}
+  /* contact */
+  form{display:grid;gap:10px}
+  input,textarea,select{width:100%;border:1px solid #223047;background:#0d1320;color:#e8eeff;border-radius:10px;padding:10px}
+  textarea{min-height:110px}
+  .foot{border-top:1px solid #1f2937;padding:26px 0;text-align:center;color:#98a7c7;font-size:13px}
+  /* responsive */
+  @media (max-width: 980px){
+    .hero .grid,.grid2{grid-template-columns:1fr}
+    .cards,.tgrid{grid-template-columns:1fr}
+    .search{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>AHA Global Travel Agency</h1>
-    <p>Special 3-Night Singapore Tours</p>
-  </header>
-  <section>
-    <h2>松 (Pine) Package</h2>
-    <div class="package">
-      <p>Gentle Discovery – Ideal for seniors seeking comfort.</p>
-      <p><strong>Price:</strong> ¥158,000</p>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">✈️</div>
+      AHA Global Travel Agency
     </div>
-    <h2>竹 (Bamboo) Package</h2>
-    <div class="package">
-      <p>Balanced Adventure – A mix of comfort and exploration.</p>
-      <p><strong>Price:</strong> ¥178,000</p>
-    </div>
-    <h2>海 (Ocean) Package</h2>
-    <div class="package">
-      <p>Elegant Escape – Premium experience with anniversary perks.</p>
-      <p><strong>Price:</strong> ¥218,000</p>
+    <nav class="navlinks">
+      <a href="#packages">Packages</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book" class="btn primary">Book Inquiry</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <div class="chip">Senior-friendly · 20-year anniversary perks</div>
+        <h1>3-Night Singapore Tours — 松・竹・海</h1>
+        <p class="sub">Comfort-first journeys designed for travelers aged 60–80 and couples celebrating milestones. Gentle pacing, trusted local guides, and curated highlights you’ll actually enjoy.</p>
+        <div class="statrow">
+          <div class="stat"><div class="v">4.9/5</div><div class="muted">Guest rating</div></div>
+          <div class="stat"><div class="v">12k+</div><div class="muted">Happy travelers</div></div>
+          <div class="stat"><div class="v">98%</div><div class="muted">On-time tours</div></div>
+        </div>
+        <div class="search">
+          <label class="input"><span>📍</span><input placeholder="Where — Singapore"/></label>
+          <label class="input"><span>📅</span><input placeholder="Dates — 2025/10/12 → 10/15"/></label>
+          <label class="input"><span>👥</span><input placeholder="Guests — 20"/></label>
+          <a class="btn primary" href="#packages">Search availability</a>
+        </div>
+      </div>
+      <div class="heroimg">
+        <img alt="Singapore skyline" src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop" />
+      </div>
     </div>
   </section>
+
+  <section id="packages">
+    <div class="wrap">
+      <h2>Choose your package</h2>
+      <p class="muted">Three curated styles with the same care and safety standards.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="img"><img alt="Gardens by the Bay" src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="body">
+            <div class="tier">松 · Pine</div>
+            <div class="title">Gentle Discovery</div>
+            <p class="muted">Unhurried pacing, accessible routes, hotel-arranged local guide.</p>
+            <div class="perk">✅ Express city coach · Breakfast & dinner · Health check support</div>
+            <div class="price"><span>¥158,000 / person</span><span class="badge">Senior-friendly</span></div>
+            <div style="margin-top:10px"><a href="#book" class="btn">Inquiry</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img"><img alt="Marina Bay area" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="body">
+            <div class="tier">竹 · Bamboo</div>
+            <div class="title">Balanced Adventure</div>
+            <p class="muted">Comfort + exploration — gardens, museums, and a night safari option.</p>
+            <div class="perk">✅ Priority coach seats · Afternoon rest window</div>
+            <div class="price"><span>¥178,000 / person</span><span class="badge">Popular</span></div>
+            <div style="margin-top:10px"><a href="#book" class="btn">Inquiry</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img"><img alt="Singapore river cruise" src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="body">
+            <div class="tier">海 · Ocean</div>
+            <div class="title">Elegant Escape</div>
+            <p class="muted">Premium hotels, concierge care, sunset river cruise for two.</p>
+            <div class="perk">✨ Anniversary dinner upgrade included</div>
+            <div class="price"><span>¥218,000 / person</span><span class="badge">Anniversary perk</span></div>
+            <div style="margin-top:10px"><a href="#book" class="btn">Inquiry</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel" style="margin-top:16px; background:#0f1a2a;">
+        <strong>Limited-time offer:</strong> Couples celebrating their <strong>20-year anniversary</strong> get a free anniversary dinner and priority coach seating on any 松・竹・海 package.
+      </div>
+    </div>
+  </section>
+
+  <section id="itinerary">
+    <div class="wrap grid2">
+      <div class="panel">
+        <h2>Sample 3-Day Itinerary (gentle pacing)</h2>
+        <div class="steps">
+          <div class="step"><strong>Day 1:</strong> Arrival · Hotel check-in · Gardens by the Bay (Flower Dome) · Welcome dinner.</div>
+          <div class="step"><strong>Day 2:</strong> Merlion Park · Chinatown lunch · Optional: National Museum or rest · Night safari (竹/海).</div>
+          <div class="step"><strong>Day 3:</strong> Marina Bay sands viewpoint · Orchard time · River cruise at sunset (海) · Anniversary dinner.</div>
+          <div class="step"><strong>Day 4:</strong> Breakfast · Airport transfer · Safe return.</div>
+        </div>
+      </div>
+
+      <div id="pricing" class="panel">
+        <h2>Pricing & Inclusions</h2>
+        <table>
+          <thead><tr><th>Includes</th><th>松</th><th>竹</th><th>海</th></tr></thead>
+          <tbody>
+            <tr><td>Hotel (3 nights)</td><td>Comfort</td><td>Comfort+</td><td>Premium</td></tr>
+            <tr><td>Meals</td><td>B/D</td><td>B/D</td><td>B/D + Dinner upgrade</td></tr>
+            <tr><td>Transport (coach)</td><td>✓</td><td>✓ priority seats</td><td>✓ concierge</td></tr>
+            <tr><td>Local guide</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Health support</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Estimated price / person</td><td>¥158,000</td><td>¥178,000</td><td>¥218,000</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:8px">Airfare & insurance available as add-ons. Group size shown in hero is 20; we can adjust.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Guest Stories</h2>
+      <p class="muted">Words from travelers who trusted AHA with their celebration.</p>
+      <div class="tgrid" style="margin-top:10px">
+        <div class="quote">“Perfect pacing for us. The afternoon rest made all the difference.” — Mr. & Mrs. Tanaka</div>
+        <div class="quote">“Our 20-year dinner was unforgettable. Thank you AHA!” — The Ng family</div>
+        <div class="quote">“Staff noticed my dad’s mobility needs and adjusted routes kindly.” — S. Nakamura</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <details open><summary>Is this suitable for ages 60–80?</summary><p class="muted">Yes. All itineraries are designed for comfort, accessibility, and safety.</p></details>
+      <details><summary>Do you arrange airfare & insurance?</summary><p class="muted">Yes, on request. We provide quotes for flights and senior-friendly coverage.</p></details>
+      <details><summary>Can you customize for private groups?</summary><p class="muted">Absolutely. Tell us dates, group size, and special needs — we’ll tailor it.</p></details>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap grid2">
+      <div class="panel">
+        <h2>Book Inquiry</h2>
+        <form action="mailto:hello@AHAglobaltravelagency.com" method="post" enctype="text/plain">
+          <label>Full name<input name="name" placeholder="Your name" required></label>
+          <label>Email<input name="email" type="email" placeholder="you@example.com" required></label>
+          <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr">
+            <label>Dates<input name="dates" placeholder="2025/10/12 → 10/15"></label>
+            <label>Guests<input name="guests" type="number" min="1" placeholder="2"></label>
+            <label>Package
+              <select name="tier">
+                <option>松 (Pine)</option>
+                <option>竹 (Bamboo)</option>
+                <option>海 (Ocean)</option>
+              </select>
+            </label>
+          </div>
+          <label>Notes<textarea name="notes" placeholder="Mobility needs, dietary requests, anniversary details"></textarea></label>
+          <button class="btn primary" type="submit">Send Inquiry</button>
+        </form>
+        <p class="muted" style="margin-top:8px">For screenshots, this form uses <code>mailto:</code>. We can later switch to Formspree or your backend.</p>
+      </div>
+      <div class="panel">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:hello@AHAglobaltravelagency.com">hello@AHAglobaltravelagency.com</a><br/>
+           Phone: +81-00-0000-0000<br/>
+           Address: Osaka, Japan</p>
+        <p class="muted">Business hours: Mon–Sat 09:00–18:00 (JST)</p>
+        <div class="panel" style="background:#0d1320;border-color:#1d2a40">
+          <strong>Agency margin preview:</strong><br/>
+          Typical margin target 12–18% after transport & hotel. Ask if you want a live calculator page.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  © <span id="y"></span> AHA Global Travel Agency — All rights reserved.
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
 </html>
